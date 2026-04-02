@@ -1,0 +1,406 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const socialLinks = [
+  { href: '#', label: 'Instagram', icon: '📷' },
+  { href: '#', label: 'LinkedIn', icon: '💼' },
+  { href: '#', label: 'Twitter', icon: '🐦' },
+];
+---
+
+<Layout title="Contact" description="Get in touch with MGoKBSEC - Student Entrepreneurship Cell of Manipal Government of Karnataka BioIncubator">
+  <section class="page-header">
+    <div class="container">
+      <h1>Contact Us</h1>
+      <p>Have questions? We'd love to hear from you.</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="contact-grid">
+        <div class="contact-form-section">
+          <h2>Send us a message</h2>
+          <form class="contact-form" id="contact-form" action="https://formspree.io/f/your-form-id" method="POST">
+            <div class="form-group">
+              <label for="name">Your Name</label>
+              <input type="text" id="name" name="name" required placeholder="Enter your full name" />
+            </div>
+            
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" required placeholder="Enter your email" />
+            </div>
+            
+            <div class="form-group">
+              <label for="category">Inquiry Category</label>
+              <select id="category" name="category" required>
+                <option value="">Select a category</option>
+                <option value="general">General Inquiry</option>
+                <option value="partnership">Partnership</option>
+                <option value="mentorship">Mentorship</option>
+                <option value="membership">Membership</option>
+                <option value="event">Event Collaboration</option>
+              </select>
+            </div>
+            
+            <div class="form-group">
+              <label for="message">Message</label>
+              <textarea id="message" name="message" rows="5" required placeholder="How can we help you?"></textarea>
+            </div>
+            
+            <button type="submit" class="btn btn-primary btn-submit">
+              <span>Send Message</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"/>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+              </svg>
+            </button>
+          </form>
+          
+          <div class="form-success" id="form-success" style="display: none;">
+            <span class="success-icon">✅</span>
+            <h3>Message Sent!</h3>
+            <p>Thank you for reaching out. We'll get back to you soon.</p>
+          </div>
+        </div>
+        
+        <div class="contact-info">
+          <div class="info-card">
+            <h3>Get in Touch</h3>
+            <p>Fill out the form and our team will get back to you within 24 hours.</p>
+            
+            <div class="info-items">
+              <div class="info-item">
+                <span class="info-icon">📍</span>
+                <div>
+                  <h4>Location</h4>
+                  <p>Karnataka BioIncubator<br/>Manipal Academy of Higher Education<br/>Manipal, Karnataka 576104</p>
+                </div>
+              </div>
+              
+              <div class="info-item">
+                <span class="info-icon">📧</span>
+                <div>
+                  <h4>Email</h4>
+                  <p>ecell@manipal.edu</p>
+                </div>
+              </div>
+              
+              <div class="info-item">
+                <span class="info-icon">📞</span>
+                <div>
+                  <h4>Phone</h4>
+                  <p>+91 820 292 0000</p>
+                </div>
+              </div>
+            </div>
+            
+            <div class="social-section">
+              <h4>Follow Us</h4>
+              <div class="social-links">
+                {socialLinks.map(link => (
+                  <a href={link.href} class="social-link" title={link.label}>
+                    <span>{link.icon}</span>
+                  </a>
+                ))}
+              </div>
+            </div>
+          </div>
+          
+          <div class="newsletter-card">
+            <h3>📬 Stay Updated</h3>
+            <p>Subscribe to our newsletter for updates on events, opportunities, and more.</p>
+            <form class="newsletter-form" action="https://formspree.io/f/your-form-id" method="POST">
+              <input type="email" name="email" placeholder="Your email address" required />
+              <button type="submit" class="btn btn-secondary">Subscribe</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section map-section">
+    <div class="container">
+      <div class="map-placeholder">
+        <span class="map-icon">🗺️</span>
+        <p>Manipal Academy of Higher Education, Karnataka</p>
+        <a href="https://maps.google.com/?q=Manipal+Academy+of+Higher+Education" target="_blank" rel="noopener" class="btn btn-outline">
+          Open in Google Maps
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-header {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    color: var(--color-white);
+    padding: 4rem 0;
+    text-align: center;
+  }
+  
+  .page-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .page-header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+  }
+  
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr;
+    gap: 3rem;
+  }
+  
+  .contact-form-section h2 {
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+  }
+  
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+  
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .form-group label {
+    font-weight: 500;
+    color: var(--color-text);
+  }
+  
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-size: 1rem;
+    font-family: var(--font-body);
+    transition: var(--transition);
+    background: var(--color-white);
+  }
+  
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    outline: none;
+    border-color: var(--color-secondary);
+  }
+  
+  .form-group textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+  
+  .btn-submit {
+    align-self: flex-start;
+    gap: 0.5rem;
+  }
+  
+  .form-success {
+    text-align: center;
+    padding: 3rem;
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .success-icon {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+  
+  .form-success h3 {
+    color: var(--color-secondary);
+    margin-bottom: 0.5rem;
+  }
+  
+  .form-success p {
+    color: var(--color-text-light);
+  }
+  
+  .info-card {
+    background: var(--color-white);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    margin-bottom: 1.5rem;
+  }
+  
+  .info-card h3 {
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+  }
+  
+  .info-card > p {
+    color: var(--color-text-light);
+    margin-bottom: 1.5rem;
+  }
+  
+  .info-items {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    margin-bottom: 1.5rem;
+  }
+  
+  .info-item {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .info-icon {
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+  
+  .info-item h4 {
+    color: var(--color-primary);
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .info-item p {
+    color: var(--color-text-light);
+    font-size: 0.85rem;
+    line-height: 1.5;
+  }
+  
+  .social-section h4 {
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+  }
+  
+  .social-links {
+    display: flex;
+    gap: 0.75rem;
+  }
+  
+  .social-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: var(--color-background);
+    border-radius: 50%;
+    font-size: 1.25rem;
+    transition: var(--transition);
+  }
+  
+  .social-link:hover {
+    background: var(--color-secondary);
+    transform: translateY(-3px);
+  }
+  
+  .newsletter-card {
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-light) 100%);
+    color: var(--color-white);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+  }
+  
+  .newsletter-card h3 {
+    margin-bottom: 0.5rem;
+  }
+  
+  .newsletter-card p {
+    opacity: 0.9;
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  
+  .newsletter-card .newsletter-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  
+  .newsletter-card input {
+    padding: 0.75rem 1rem;
+    border: none;
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+  }
+  
+  .newsletter-card .btn {
+    justify-content: center;
+  }
+  
+  .map-section {
+    background: var(--color-background);
+  }
+  
+  .map-placeholder {
+    background: var(--color-white);
+    padding: 4rem 2rem;
+    border-radius: var(--radius-lg);
+    text-align: center;
+    box-shadow: var(--shadow-sm);
+  }
+  
+  .map-icon {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+  
+  .map-placeholder p {
+    color: var(--color-text-light);
+    margin-bottom: 1.5rem;
+  }
+  
+  @media (max-width: 768px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('contact-form') as HTMLFormElement;
+  const formSuccess = document.getElementById('form-success');
+  
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const formData = new FormData(form);
+    const submitBtn = form.querySelector('.btn-submit') as HTMLButtonElement;
+    
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<span>Sending...</span>';
+    
+    try {
+      const response = await fetch(form.action, {
+        method: 'POST',
+        body: formData,
+        headers: {
+          'Accept': 'application/json'
+        }
+      });
+      
+      if (response.ok) {
+        form.style.display = 'none';
+        if (formSuccess) formSuccess.style.display = 'block';
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (error) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<span>Send Message</span>';
+      alert('There was an error sending your message. Please try again.');
+    }
+  });
+</script>

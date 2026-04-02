@@ -1,0 +1,271 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { startups, sectors } from '../data/startups';
+---
+
+<Layout title="Startups" description="Discover innovative student startups from MGoKBSEC">
+  <section class="page-header">
+    <div class="container">
+      <h1>Our Startups</h1>
+      <p>Innovative ventures from student entrepreneurs at MGoKBSEC</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="filter-tabs">
+        {sectors.map(sector => (
+          <button 
+            class:list={['filter-btn', { active: sector === 'all' }]}
+            data-filter={sector}
+          >
+            {sector === 'all' ? 'All' : sector.charAt(0).toUpperCase() + sector.slice(1)}
+          </button>
+        ))}
+      </div>
+
+      <div class="startups-grid" id="startups-grid">
+        {startups.map(startup => (
+          <div class="startup-card" data-sector={startup.sector}>
+            <div class="startup-header">
+              <div class="startup-logo">{startup.logo}</div>
+              <span class={`badge badge-${startup.sector}`}>{startup.sector}</span>
+            </div>
+            <h3>{startup.name}</h3>
+            <p class="startup-tagline">{startup.tagline}</p>
+            <p class="startup-description">{startup.description}</p>
+            <div class="startup-footer">
+              <span class="startup-year">Est. {startup.year}</span>
+              <a href="#" class="learn-more">Learn More →</a>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      <div class="empty-state" id="empty-state" style="display: none;">
+        <span class="empty-icon">🔍</span>
+        <h3>No startups in this category yet</h3>
+        <p>Check back soon or explore other categories.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta-section">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Have an innovative idea?</h2>
+        <p>Join MGoKBSEC and turn your idea into a successful startup.</p>
+        <a href="/contact" class="btn btn-primary">Apply Now</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-header {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    color: var(--color-white);
+    padding: 4rem 0;
+    text-align: center;
+  }
+  
+  .page-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .page-header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+  }
+  
+  .filter-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem;
+    justify-content: center;
+    margin-bottom: 3rem;
+  }
+  
+  .filter-btn {
+    padding: 0.5rem 1.25rem;
+    border: 2px solid var(--color-border);
+    border-radius: var(--radius-md);
+    background: var(--color-white);
+    color: var(--color-text);
+    font-weight: 500;
+    cursor: pointer;
+    transition: var(--transition);
+  }
+  
+  .filter-btn:hover {
+    border-color: var(--color-secondary);
+    color: var(--color-secondary);
+  }
+  
+  .filter-btn.active {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: var(--color-white);
+  }
+  
+  .startups-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  
+  .startup-card {
+    background: var(--color-white);
+    border-radius: var(--radius-lg);
+    padding: 1.5rem;
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .startup-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .startup-card.hidden {
+    display: none;
+  }
+  
+  .startup-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1rem;
+  }
+  
+  .startup-logo {
+    font-size: 2.5rem;
+  }
+  
+  .startup-card h3 {
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+  }
+  
+  .startup-tagline {
+    font-weight: 500;
+    color: var(--color-text);
+    margin-bottom: 0.75rem;
+  }
+  
+  .startup-description {
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+    line-height: 1.6;
+    flex: 1;
+    margin-bottom: 1rem;
+  }
+  
+  .startup-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid var(--color-border);
+  }
+  
+  .startup-year {
+    font-size: 0.85rem;
+    color: var(--color-text-light);
+  }
+  
+  .learn-more {
+    font-size: 0.9rem;
+    font-weight: 500;
+  }
+  
+  .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+  }
+  
+  .empty-icon {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+  
+  .empty-state h3 {
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+  }
+  
+  .empty-state p {
+    color: var(--color-text-light);
+  }
+  
+  .cta-section {
+    background: var(--color-background);
+  }
+  
+  .cta-box {
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-light) 100%);
+    color: var(--color-white);
+    padding: 3rem;
+    border-radius: var(--radius-lg);
+    text-align: center;
+  }
+  
+  .cta-box h2 {
+    margin-bottom: 0.5rem;
+  }
+  
+  .cta-box p {
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+  }
+  
+  .cta-box .btn-primary {
+    background: var(--color-white);
+    color: var(--color-secondary);
+  }
+  
+  .cta-box .btn-primary:hover {
+    background: var(--color-background);
+  }
+  
+  @media (max-width: 768px) {
+    .startups-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const filterBtns = document.querySelectorAll('.filter-btn');
+  const startupCards = document.querySelectorAll('.startup-card');
+  const emptyState = document.getElementById('empty-state');
+  
+  filterBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const filter = btn.getAttribute('data-filter');
+      
+      filterBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      let visibleCount = 0;
+      
+      startupCards.forEach(card => {
+        const sector = card.getAttribute('data-sector');
+        if (filter === 'all' || sector === filter) {
+          card.classList.remove('hidden');
+          visibleCount++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+      
+      if (emptyState) {
+        emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+      }
+    });
+  });
+</script>

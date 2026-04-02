@@ -1,0 +1,269 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="About" description="Learn about MGoKBSEC - Student Entrepreneurship Cell of Manipal Government of Karnataka BioIncubator">
+  <section class="page-header">
+    <div class="container">
+      <h1>About MGoKBSEC</h1>
+      <p>Student Entrepreneurship Cell of Manipal Government of Karnataka BioIncubator</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-content">
+          <h2>Our Story</h2>
+          <p>
+            MGoKBSEC was established to foster an entrepreneurial culture among students 
+            at Manipal University, in partnership with the Karnataka BioIncubator. 
+            We provide a platform for aspiring student entrepreneurs to transform their 
+            innovative ideas into successful ventures.
+          </p>
+          <p>
+            Since our inception, we have supported over 50 student startups across 
+            diverse sectors including biotechnology, healthcare, agriculture, and education. 
+            Our mission is to create a thriving ecosystem where students can learn, experiment, 
+            and launch their entrepreneurial journeys with confidence.
+          </p>
+        </div>
+        <div class="about-visual">
+          <img src="/seclogo.jpeg" alt="MGoKBSEC Logo" />
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section mission-vision">
+    <div class="container">
+      <div class="mv-grid">
+        <div class="mv-card">
+          <span class="mv-icon">🎯</span>
+          <h3>Our Mission</h3>
+          <p>
+            To empower students with the knowledge, skills, and resources needed to 
+            launch and grow successful startups, particularly in the biotechnology 
+            and life sciences sectors.
+          </p>
+        </div>
+        <div class="mv-card">
+          <span class="mv-icon">👁️</span>
+          <h3>Our Vision</h3>
+          <p>
+            To be Karnataka's leading student entrepreneurship cell, creating a 
+            pipeline of innovative startups that contribute to the state's 
+            bioeconomy and solve real-world challenges.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">Partners & Institutions</h2>
+      <p class="section-subtitle">We collaborate with leading institutions to support student entrepreneurs</p>
+      
+      <div class="partners-grid">
+        <div class="partner-card">
+          <h4>Karnataka BioIncubator</h4>
+          <p>Our parent institution providing state-of-the-art facilities and mentorship</p>
+        </div>
+        <div class="partner-card">
+          <h4>Manipal Academy of Higher Education</h4>
+          <p>Academic partner supporting research and innovation</p>
+        </div>
+        <div class="partner-card">
+          <h4>Startup Karnataka</h4>
+          <p>Government partnership for funding and policy support</p>
+        </div>
+        <div class="partner-card">
+          <h4>KIADB</h4>
+          <p>Karnataka Industrial Area Development Board</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title">What We Offer</h2>
+      <div class="offerings-grid">
+        <div class="offering-item">
+          <span class="offering-icon">🏗️</span>
+          <h4>Incubation Support</h4>
+          <p>Access to lab space, equipment, and shared resources</p>
+        </div>
+        <div class="offering-item">
+          <span class="offering-icon">👨‍🏫</span>
+          <h4>Mentorship</h4>
+          <p>One-on-one guidance from industry experts and entrepreneurs</p>
+        </div>
+        <div class="offering-item">
+          <span class="offering-icon">💰</span>
+          <h4>Funding Access</h4>
+          <p>Connections to grants, seed funds, and angel investors</p>
+        </div>
+        <div class="offering-item">
+          <span class="offering-icon">📚</span>
+          <h4>Learning Programs</h4>
+          <p>Workshops, bootcamps, and skill-building sessions</p>
+        </div>
+        <div class="offering-item">
+          <span class="offering-icon">🤝</span>
+          <h4>Networking</h4>
+          <p>Connect with alumni, investors, and industry professionals</p>
+        </div>
+        <div class="offering-item">
+          <span class="offering-icon">🌐</span>
+          <h4>Community</h4>
+          <p>Be part of a vibrant network of student founders</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-header {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    color: var(--color-white);
+    padding: 4rem 0;
+    text-align: center;
+  }
+  
+  .page-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .page-header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+  }
+  
+  .about-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 4rem;
+    align-items: center;
+  }
+  
+  .about-content h2 {
+    color: var(--color-primary);
+    margin-bottom: 1.5rem;
+  }
+  
+  .about-content p {
+    color: var(--color-text-light);
+    margin-bottom: 1rem;
+    line-height: 1.8;
+  }
+  
+  .about-visual img {
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .mission-vision {
+    background: var(--color-white);
+  }
+  
+  .mv-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+  
+  .mv-card {
+    padding: 2.5rem;
+    background: var(--color-background);
+    border-radius: var(--radius-lg);
+    border-left: 4px solid var(--color-secondary);
+  }
+  
+  .mv-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+  
+  .mv-card h3 {
+    color: var(--color-primary);
+    margin-bottom: 1rem;
+  }
+  
+  .mv-card p {
+    color: var(--color-text-light);
+    line-height: 1.7;
+  }
+  
+  .partners-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .partner-card {
+    background: var(--color-white);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    text-align: center;
+    transition: var(--transition);
+  }
+  
+  .partner-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .partner-card h4 {
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+    font-size: 1rem;
+  }
+  
+  .partner-card p {
+    color: var(--color-text-light);
+    font-size: 0.85rem;
+  }
+  
+  .offerings-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+  
+  .offering-item {
+    background: var(--color-white);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    text-align: center;
+  }
+  
+  .offering-icon {
+    font-size: 2.5rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+  
+  .offering-item h4 {
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+  }
+  
+  .offering-item p {
+    color: var(--color-text-light);
+    font-size: 0.9rem;
+  }
+  
+  @media (max-width: 768px) {
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .mv-grid { grid-template-columns: 1fr; }
+    .partners-grid { grid-template-columns: repeat(2, 1fr); }
+    .offerings-grid { grid-template-columns: 1fr; }
+  }
+</style>

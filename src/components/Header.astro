@@ -1,0 +1,166 @@
+---
+const currentPath = Astro.url.pathname;
+
+const navLinks = [
+  { href: '/', label: 'Home' },
+  { href: '/about', label: 'About' },
+  { href: '/startups', label: 'Startups' },
+  { href: '/events', label: 'Events' },
+  { href: '/resources', label: 'Resources' },
+  { href: '/team', label: 'Team' },
+  { href: '/contact', label: 'Contact' },
+];
+---
+
+<header class="header">
+  <div class="container header-inner">
+    <a href="/" class="logo">
+      <img src="/seclogo.jpeg" alt="MGoKBSEC Logo" width="50" height="50" />
+      <span class="logo-text">MGoKBSEC</span>
+    </a>
+    
+    <nav class="nav-desktop">
+      {navLinks.map(link => (
+        <a 
+          href={link.href} 
+          class:list={['nav-link', { active: currentPath === link.href }]}
+        >
+          {link.label}
+        </a>
+      ))}
+    </nav>
+    
+    <button class="mobile-menu-btn" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+  </div>
+  
+  <nav class="nav-mobile">
+    {navLinks.map(link => (
+      <a 
+        href={link.href} 
+        class:list={['nav-link', { active: currentPath === link.href }]}
+      >
+        {link.label}
+      </a>
+    ))}
+  </nav>
+</header>
+
+<style>
+  .header {
+    background: linear-gradient(135deg, #E65100 0%, #FF8A65 100%);
+    box-shadow: var(--shadow-md);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+  
+  .header-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 80px;
+  }
+  
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.25rem;
+    color: var(--color-white);
+  }
+  
+  .logo img {
+    border-radius: var(--radius-sm);
+  }
+  
+  .nav-desktop {
+    display: flex;
+    gap: 2rem;
+  }
+  
+  .nav-link {
+    color: var(--color-white);
+    font-weight: 500;
+    font-size: 0.95rem;
+    padding: 0.5rem 0;
+    position: relative;
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: var(--color-white);
+    transition: var(--transition);
+  }
+  
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 100%;
+  }
+  
+  .nav-link.active {
+    color: var(--color-white);
+  }
+  
+  .mobile-menu-btn {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+  
+  .mobile-menu-btn span {
+    display: block;
+    width: 25px;
+    height: 3px;
+    background: var(--color-white);
+    border-radius: 2px;
+    transition: var(--transition);
+  }
+  
+  .nav-mobile {
+    display: none;
+    flex-direction: column;
+    padding: 1rem;
+    background: linear-gradient(135deg, #E65100 0%, #FF8A65 100%);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .nav-mobile .nav-link {
+    padding: 0.75rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  @media (max-width: 768px) {
+    .nav-desktop { display: none; }
+    .mobile-menu-btn { display: flex; }
+    
+    .header:has(.mobile-menu-btn:hover) .nav-mobile,
+    .header:has(.nav-mobile .nav-link:hover) .nav-mobile,
+    .nav-mobile.open {
+      display: flex;
+    }
+  }
+</style>
+
+<script>
+  const menuBtn = document.querySelector('.mobile-menu-btn');
+  const mobileNav = document.querySelector('.nav-mobile');
+  
+  menuBtn?.addEventListener('click', () => {
+    mobileNav?.classList.toggle('open');
+  });
+</script>

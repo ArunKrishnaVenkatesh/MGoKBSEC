@@ -1,0 +1,294 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { resources, resourceCategories } from '../data/resources';
+
+const categorizedResources = resourceCategories.map(cat => ({
+  ...cat,
+  items: resources.filter(r => r.category === cat.id)
+}));
+---
+
+<Layout title="Resources" description="Templates, guides, and tools for student entrepreneurs">
+  <section class="page-header">
+    <div class="container">
+      <h1>Resources</h1>
+      <p>Templates, toolkits, and guides to help you on your entrepreneurial journey</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      {categorizedResources.map(cat => (
+        <div class="category-section">
+          <div class="category-header">
+            <span class="category-icon">{cat.icon}</span>
+            <h2>{cat.name}</h2>
+          </div>
+          <div class="resources-grid">
+            {cat.items.map(resource => (
+              <div class="resource-card">
+                <div class="resource-icon">
+                  {resource.type === 'PDF' ? '📄' : resource.type === 'DOCX' ? '📝' : '🎬'}
+                </div>
+                <div class="resource-info">
+                  <h4>{resource.title}</h4>
+                  <p>{resource.description}</p>
+                  <span class="resource-type">{resource.type}</span>
+                </div>
+                <a href={resource.downloadLink} class="download-btn" download>
+                  <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                    <polyline points="7 10 12 15 17 10"/>
+                    <line x1="12" y1="15" x2="12" y2="3"/>
+                  </svg>
+                </a>
+              </div>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="section external-resources">
+    <div class="container">
+      <h2 class="section-title">External Learning Resources</h2>
+      <p class="section-subtitle">Curated links to help you learn more about entrepreneurship</p>
+      
+      <div class="external-grid">
+        <a href="https://www.startupindia.gov.in" target="_blank" rel="noopener" class="external-card">
+          <span class="external-icon">🇮🇳</span>
+          <div>
+            <h4>Startup India</h4>
+            <p>Government portal for startup ecosystem</p>
+          </div>
+        </a>
+        <a href="https://www.nsrcel.org" target="_blank" rel="noopener" class="external-card">
+          <span class="external-icon">🏛️</span>
+          <div>
+            <h4>NSRCEL IIM Bangalore</h4>
+            <p>India's leading incubator and accelerator</p>
+          </div>
+        </a>
+        <a href="https://www.ycombinator.com" target="_blank" rel="noopener" class="external-card">
+          <span class="external-icon">💡</span>
+          <div>
+            <h4>Y Combinator</h4>
+            <p>Startup library and resources</p>
+          </div>
+        </a>
+        <a href="https://www.failory.com" target="_blank" rel="noopener" class="external-card">
+          <span class="external-icon">📚</span>
+          <div>
+            <h4>Failory</h4>
+            <p>Learn from startup failures</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta-section">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Need custom resources?</h2>
+        <p>Let us know what templates or guides would help you most.</p>
+        <a href="/contact" class="btn btn-primary">Request Resources</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-header {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    color: var(--color-white);
+    padding: 4rem 0;
+    text-align: center;
+  }
+  
+  .page-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .page-header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+  }
+  
+  .category-section {
+    margin-bottom: 4rem;
+  }
+  
+  .category-section:last-child {
+    margin-bottom: 0;
+  }
+  
+  .category-header {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--color-border);
+  }
+  
+  .category-icon {
+    font-size: 2rem;
+  }
+  
+  .category-header h2 {
+    color: var(--color-primary);
+    font-size: 1.5rem;
+  }
+  
+  .resources-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .resource-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--color-white);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+  }
+  
+  .resource-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateX(5px);
+  }
+  
+  .resource-icon {
+    font-size: 2rem;
+    min-width: 50px;
+    text-align: center;
+  }
+  
+  .resource-info {
+    flex: 1;
+  }
+  
+  .resource-info h4 {
+    color: var(--color-primary);
+    margin-bottom: 0.25rem;
+    font-size: 1rem;
+  }
+  
+  .resource-info p {
+    color: var(--color-text-light);
+    font-size: 0.85rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .resource-type {
+    display: inline-block;
+    background: var(--color-background);
+    padding: 0.125rem 0.5rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-text-light);
+  }
+  
+  .download-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: var(--color-secondary);
+    color: var(--color-white);
+    border-radius: var(--radius-md);
+    transition: var(--transition);
+  }
+  
+  .download-btn:hover {
+    background: var(--color-secondary-light);
+    transform: scale(1.1);
+  }
+  
+  .external-resources {
+    background: var(--color-background);
+  }
+  
+  .external-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  
+  .external-card {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: var(--color-white);
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition);
+  }
+  
+  .external-card:hover {
+    box-shadow: var(--shadow-md);
+    transform: translateY(-3px);
+  }
+  
+  .external-icon {
+    font-size: 1.5rem;
+  }
+  
+  .external-card h4 {
+    color: var(--color-primary);
+    font-size: 0.95rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .external-card p {
+    color: var(--color-text-light);
+    font-size: 0.8rem;
+  }
+  
+  .cta-section {
+    background: var(--color-white);
+  }
+  
+  .cta-box {
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-secondary-light) 100%);
+    color: var(--color-white);
+    padding: 3rem;
+    border-radius: var(--radius-lg);
+    text-align: center;
+  }
+  
+  .cta-box h2 {
+    margin-bottom: 0.5rem;
+  }
+  
+  .cta-box p {
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+  }
+  
+  .cta-box .btn-primary {
+    background: var(--color-white);
+    color: var(--color-secondary);
+  }
+  
+  .cta-box .btn-primary:hover {
+    background: var(--color-background);
+  }
+  
+  @media (max-width: 768px) {
+    .resources-grid,
+    .external-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

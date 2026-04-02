@@ -1,0 +1,350 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { events } from '../data/events';
+
+const upcomingEvents = events.filter(e => new Date(e.date) >= new Date('2024-01-01'));
+const pastEvents = events.filter(e => new Date(e.date) < new Date('2024-01-01'));
+---
+
+<Layout title="Events" description="Upcoming events, workshops, bootcamps and networking opportunities from MGoKBSEC">
+  <section class="page-header">
+    <div class="container">
+      <h1>Events</h1>
+      <p>Workshops, bootcamps, pitching sessions, and networking opportunities</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="tabs">
+        <button class="tab-btn active" data-tab="upcoming">
+          Upcoming Events
+          <span class="tab-count">{upcomingEvents.length}</span>
+        </button>
+        <button class="tab-btn" data-tab="past">
+          Past Events
+          <span class="tab-count">{pastEvents.length}</span>
+        </button>
+      </div>
+
+      <div class="tab-content" id="upcoming">
+        {upcomingEvents.length > 0 ? (
+          <div class="events-grid">
+            {upcomingEvents.map(event => (
+              <div class="event-card">
+                <div class="event-date">
+                  <span class="event-month">{event.month}</span>
+                  <span class="event-day">{event.day}</span>
+                </div>
+                <div class="event-content">
+                  <div class="event-meta">
+                    <span class={`badge badge-${event.type === 'workshop' ? 'edtech' : event.type === 'bootcamp' ? 'biotech' : 'general'}`}>
+                      {event.type}
+                    </span>
+                    <span class="event-location">📍 {event.location}</span>
+                  </div>
+                  <h3>{event.title}</h3>
+                  <p>{event.description}</p>
+                  <a href={event.registrationLink} class="btn btn-primary">Register Now</a>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div class="empty-state">
+            <span class="empty-icon">📅</span>
+            <h3>No upcoming events</h3>
+            <p>Check back soon for new events, or subscribe to our newsletter.</p>
+          </div>
+        )}
+      </div>
+
+      <div class="tab-content hidden" id="past">
+        {pastEvents.length > 0 ? (
+          <div class="events-grid">
+            {pastEvents.map(event => (
+              <div class="event-card past">
+                <div class="event-date">
+                  <span class="event-month">{event.month}</span>
+                  <span class="event-day">{event.day}</span>
+                </div>
+                <div class="event-content">
+                  <div class="event-meta">
+                    <span class={`badge badge-${event.type === 'workshop' ? 'edtech' : event.type === 'bootcamp' ? 'biotech' : 'general'}`}>
+                      {event.type}
+                    </span>
+                    <span class="event-location">📍 {event.location}</span>
+                  </div>
+                  <h3>{event.title}</h3>
+                  <p>{event.description}</p>
+                  <a href="#" class="btn btn-outline">View Recap</a>
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <div class="empty-state">
+            <span class="empty-icon">📁</span>
+            <h3>No past events</h3>
+            <p>Past events will appear here after they are completed.</p>
+          </div>
+        )}
+      </div>
+    </div>
+  </section>
+
+  <section class="section cta-section">
+    <div class="container">
+      <div class="cta-box">
+        <h2>Want to organize an event?</h2>
+        <p>Partner with us to host workshops, sessions, or competitions.</p>
+        <a href="/contact" class="btn btn-primary">Get in Touch</a>
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .page-header {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    color: var(--color-white);
+    padding: 4rem 0;
+    text-align: center;
+  }
+  
+  .page-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 0.5rem;
+  }
+  
+  .page-header p {
+    font-size: 1.1rem;
+    opacity: 0.9;
+  }
+  
+  .tabs {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    border-bottom: 2px solid var(--color-border);
+  }
+  
+  .tab-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1rem 1.5rem;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--color-text-light);
+    cursor: pointer;
+    position: relative;
+    transition: var(--transition);
+  }
+  
+  .tab-btn::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: var(--color-secondary);
+    transform: scaleX(0);
+    transition: var(--transition);
+  }
+  
+  .tab-btn:hover {
+    color: var(--color-text);
+  }
+  
+  .tab-btn.active {
+    color: var(--color-secondary);
+  }
+  
+  .tab-btn.active::after {
+    transform: scaleX(1);
+  }
+  
+  .tab-count {
+    background: var(--color-background);
+    padding: 0.25rem 0.5rem;
+    border-radius: var(--radius-sm);
+    font-size: 0.85rem;
+  }
+  
+  .tab-btn.active .tab-count {
+    background: var(--color-secondary);
+    color: var(--color-white);
+  }
+  
+  .tab-content.hidden {
+    display: none;
+  }
+  
+  .events-grid {
+    display: grid;
+    gap: 2rem;
+  }
+  
+  .event-card {
+    display: flex;
+    gap: 2rem;
+    background: var(--color-white);
+    padding: 2rem;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    transition: var(--transition);
+  }
+  
+  .event-card:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateX(5px);
+  }
+  
+  .event-card.past {
+    opacity: 0.85;
+  }
+  
+  .event-date {
+    background: var(--color-secondary);
+    color: var(--color-white);
+    padding: 1rem 1.25rem;
+    border-radius: var(--radius-md);
+    text-align: center;
+    min-width: 90px;
+  }
+  
+  .event-card.past .event-date {
+    background: var(--color-text-light);
+  }
+  
+  .event-month {
+    display: block;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+  
+  .event-day {
+    display: block;
+    font-size: 2rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+  
+  .event-content {
+    flex: 1;
+  }
+  
+  .event-meta {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+  }
+  
+  .event-location {
+    font-size: 0.9rem;
+    color: var(--color-text-light);
+  }
+  
+  .event-content h3 {
+    color: var(--color-primary);
+    margin-bottom: 0.75rem;
+  }
+  
+  .event-content p {
+    color: var(--color-text-light);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  
+  .empty-state {
+    text-align: center;
+    padding: 4rem 2rem;
+  }
+  
+  .empty-icon {
+    font-size: 4rem;
+    display: block;
+    margin-bottom: 1rem;
+  }
+  
+  .empty-state h3 {
+    color: var(--color-primary);
+    margin-bottom: 0.5rem;
+  }
+  
+  .empty-state p {
+    color: var(--color-text-light);
+  }
+  
+  .cta-section {
+    background: var(--color-background);
+  }
+  
+  .cta-box {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-light) 100%);
+    color: var(--color-white);
+    padding: 3rem;
+    border-radius: var(--radius-lg);
+    text-align: center;
+  }
+  
+  .cta-box h2 {
+    margin-bottom: 0.5rem;
+  }
+  
+  .cta-box p {
+    margin-bottom: 1.5rem;
+    opacity: 0.9;
+  }
+  
+  .cta-box .btn-primary {
+    background: var(--color-white);
+    color: var(--color-primary);
+  }
+  
+  .cta-box .btn-primary:hover {
+    background: var(--color-background);
+  }
+  
+  @media (max-width: 768px) {
+    .event-card {
+      flex-direction: column;
+      text-align: center;
+    }
+    
+    .event-meta {
+      justify-content: center;
+    }
+    
+    .tabs {
+      flex-direction: column;
+    }
+  }
+</style>
+
+<script>
+  const tabBtns = document.querySelectorAll('.tab-btn');
+  const tabContents = document.querySelectorAll('.tab-content');
+  
+  tabBtns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const tabId = btn.getAttribute('data-tab');
+      
+      tabBtns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      
+      tabContents.forEach(content => {
+        content.classList.add('hidden');
+        if (content.id === tabId) {
+          content.classList.remove('hidden');
+        }
+      });
+    });
+  });
+</script>
